@@ -15,23 +15,41 @@ class Stage {
 }
 
 class VideoStage extends Stage {
-  begin() {
+  constructor(rootElement, nextStage) {
+    super(rootElement, nextStage)
+
+    this.vidPreloadRoot = document.getElementById('vid-preload-rood')
+
+    if (!this.vidPreloadRoot) {
+      this.vidPreloadRoot = document.createElement('div')
+      this.vidPreloadRoot.setAttribute('style', `
+display: none;
+      `)
+
+      document.body.appendChild(this.vidPreloadRoot)
+    }
+
     // set this.url when overriding
     let vidUrl = this.url()
-    let cutoff = this.cutoff()
 
-    let vid = document.createElement('video')
-    vid.setAttribute('autoplay', true)
-    vid.setAttribute('src', vidUrl)
-    vid.setAttribute('style', `
+    this.vidEl = document.createElement('video')
+    this.vidEl.setAttribute('src', vidUrl)
+    this.vidEl.setAttribute('style', `
 width: 100%;
 height: 100%;
     `)
 
+    this.vidPreloadRoot.appendChild(this.vidEl)
+  }
+
+  begin() {
+    // set this.cutoff when overriding
+    let cutoff = this.cutoff()
+
     let that = this
     let calledNextStage = false
 
-    vid.addEventListener('pause', () => {
+    this.vidEl.addEventListener('pause', () => {
       if (!calledNextStage) {
         calledNextStage = true
         that.nextStage()
@@ -39,7 +57,7 @@ height: 100%;
     })
 
     if (cutoff) {
-      vid.addEventListener('play', () => {
+      this.vidEl.addEventListener('play', () => {
         setTimeout(function () {
           if (!calledNextStage) {
             calledNextStage = true
@@ -49,7 +67,10 @@ height: 100%;
       })
     }
 
-    this.rootElement.appendChild(vid)
+    this.rootElement.appendChild(this.vidEl)
+    document.body.removeChild(this.vidPreloadRoot)
+
+    this.vidEl.play()
   }
 
   // override to set a time to cutoff the video

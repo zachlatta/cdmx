@@ -10,14 +10,12 @@ class StageManager {
       throw new Error('passed stages config is empty')
     }
 
+    this.stages = this.stageClasses.map(stageClass => {
+      return new stageClass(this.rootElement, () => this.nextStage())
+    })
+
     this.currentStageIndex = 0
-
-    const currentStageClass = this.stageClasses[this.currentStageIndex]
-
-    this.currentStage = new currentStageClass(
-      this.rootElement,
-      () => this.nextStage() // need to do this to preserve 'this'
-    )
+    this.currentStage = this.stages[this.currentStageIndex]
 
     this.state = 'begun'
     this.currentStage.begin()
@@ -35,11 +33,7 @@ class StageManager {
       this.currentStageIndex++
     }
 
-    this.currentStage = new this.stageClasses[this.currentStageIndex](
-      this.rootElement,
-      () => this.nextStage() // need to do to preserve 'this'
-    )
-
+    this.currentStage = this.stages[this.currentStageIndex]
     this.currentStage.begin()
   }
 }
