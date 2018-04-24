@@ -114,11 +114,6 @@ class IntroPreface3 extends TextStage {
 }
 
 class IntroPreface4 extends TextStage {
-  text() { return 'initializing mexico city...' }
-  delay() { return 500 }
-}
-
-class IntroPreface5 extends TextStage {
   text() { return '(also known as cdmx)' }
   delay() { return 1250 }
 }
@@ -241,6 +236,11 @@ class LetsBegin extends TextStage {
   delay() { return 2000 }
 }
 
+class LetsBeginWarning extends TextStage {
+  text() { return 'i apologize in advance to those with slow internet connections' }
+  delay() { return 2500 }
+}
+
 class SfBreakfastIntro extends TextStage {
   text() { return 'FIRST, BREAKFAST IN SF' }
   delay() { return 1250 }
@@ -253,6 +253,10 @@ class SfBreakfastIntro2 extends TextStage {
 class SfBreakfast extends VideoStage {
   url() { return 'assets/travel/1_sf_breakfast.mp4' }
   cutoff() { return 4250 }
+}
+
+class SfBreakfastPost extends TextStage {
+  text() { return 'GOT IT' }
 }
 
 class AirplaneTakeoffIntro extends TextStage {
@@ -298,7 +302,7 @@ class FirstStopDetail extends TextStage {
 
 class RomaLead extends VideoStage {
   url() { return 'assets/arrival/1_street.mp4' }
-  cutoff() { return 3500 }
+  cutoff() { return 5000 }
 }
 
 class RomaFountainIntro extends TextStage {
@@ -358,4 +362,18 @@ class RomaBookIntro3 extends TextStage {
 class RomaBookDetail3 extends VideoStage {
   url() { return 'assets/el_pendulo/pendulum.mp4' }
   cutoff() { return 2000 }
+}
+
+class FinalText1 extends TextStage {
+  text() { return "ok that's all for now" }
+}
+
+class FinalText2 extends TextStage {
+  text() { return "more content will by added by thursday" }
+  delay() { return 2000 }
+}
+
+class FinalText3 extends TextStage {
+  text() { return "2018-04-26" }
+  delay() { return 2000 }
 }
