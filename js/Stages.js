@@ -382,7 +382,7 @@ class RomaBookIntro3 extends TextStage {
 
 class RomaBookDetail3 extends VideoStage {
   url() { return 'assets/el_pendulo/pendulum.mp4' }
-  cutoff() { return 2000 }
+  cutoff() { return 3000 }
 }
 
 class FinalText1 extends TextStage {
