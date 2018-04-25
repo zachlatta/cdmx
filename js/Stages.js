@@ -36,7 +36,7 @@ display: none;
     this.vidEl.setAttribute('src', vidUrl)
     this.vidEl.setAttribute('style', `
 width: 100%;
-height: 100%;
+min-height: 100%;
     `)
 
     this.vidPreloadRoot.appendChild(this.vidEl)
@@ -92,9 +92,11 @@ class TextStage extends Stage {
     let el = document.createElement('h1')
     el.innerText = text
     el.setAttribute('style', `
+position: relative;
+top: 40%;
+transform: translateY(-50%);
 text-align: center;
 font-family: Arial;
-margin-top: 300px;
 font-size: 48px;
     `)
 
@@ -286,27 +288,27 @@ class AirplaneTakeoffIntro extends TextStage {
 
 class AirplaneTakeoff extends VideoStage {
   url() { return 'assets/travel/2_airplane_takeoff.mp4' }
-  cutoff() { return 2000 }
+  cutoff() { return 1000 }
 }
 
 class AirplaneIntoClouds extends VideoStage {
   url() { return 'assets/travel/3_airplane_into_clouds.mp4' }
-  cutoff() { return 2000 }
+  cutoff() { return 750 }
 }
 
 class AirplaneOverCdmx extends VideoStage {
   url() { return 'assets/travel/4_airplane_over_cdmx.mp4' }
-  cutoff() { return 2000 }
+  cutoff() { return 750 }
 }
 
 class AirplaneCdmxClose extends VideoStage {
   url() { return 'assets/travel/5_airplane_cdmx_close.mp4' }
-  cutoff() { return 2000 }
+  cutoff() { return 750 }
 }
 
 class AirplaneLanding extends VideoStage {
   url() { return 'assets/travel/6_airplane_landing.mp4' }
-  cutoff() { return 2000 }
+  cutoff() { return 1000 }
 }
 
 class MadeIt extends TextStage {
@@ -383,6 +385,40 @@ class RomaBookIntro3 extends TextStage {
 class RomaBookDetail3 extends VideoStage {
   url() { return 'assets/el_pendulo/pendulum.mp4' }
   cutoff() { return 3000 }
+}
+
+class RomaParkIntro1 extends TextStage {
+  text() { return 'AND GO TO THE PARK' }
+}
+
+class RomaParkDetail1 extends VideoStage {
+  url() { return 'assets/park/walking.mp4' }
+  cutoff() { return 5000 }
+}
+
+class RomaParkIntro2 extends TextStage {
+  text() { return 'EAT ICE CREAM' }
+}
+
+class RomaParkDetail2 extends VideoStage {
+  url() { return 'assets/park/ice_cream.mp4'}
+  cutoff() { return 2000 }
+}
+
+class RomaParkIntro3 extends TextStage {
+  text() { return 'LOOK AT DOGS' }
+}
+
+class RomaParkDetail3 extends VideoStage {
+  url() { return 'assets/park/dog.mp4' }
+}
+
+class RomaParkIntro4 extends TextStage {
+  text() { return '(nearby streets are named after authors)' }
+}
+
+class RomaParkDetail4 extends VideoStage {
+  url() { return 'assets/park/author_streets.mov' }
 }
 
 class FinalText1 extends TextStage {
